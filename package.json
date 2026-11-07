@@ -13,8 +13,8 @@
     "test": "node --test test/*.test.cjs",
     "test:ui": "node scripts/ui-smoke.cjs",
     "pack": "electron-builder --dir",
-    "dist:win": "electron-builder --win portable",
-    "dist:mac": "electron-builder --mac dmg",
+    "dist:win": "electron-builder --win nsis",
+    "dist:mac": "electron-builder --mac pkg",
     "check:repo": "node scripts/check-repository.cjs"
   },
   "dependencies": {
@@ -43,7 +43,7 @@
       "node_modules/onnxruntime-node/bin/**/*"
     ],
     "win": {
-      "target": "portable",
+      "target": "nsis",
       "icon": "assets/brand/icon.ico",
       "extraResources": [
         {
@@ -64,7 +64,7 @@
       ]
     },
     "mac": {
-      "target": "dmg",
+      "target": "pkg",
       "category": "public.app-category.utilities",
       "icon": "assets/brand/icon.icns",
       "extendInfo": {
@@ -80,7 +80,23 @@
       ]
     },
     "afterPack": "scripts/verify-package.cjs",
-    "artifactName": "Caloraview-Desktop-${version}-${os}-${arch}.${ext}"
+    "artifactName": "Caloraview-Desktop-${version}-${os}-${arch}.${ext}",
+    "nsis": {
+      "artifactName": "Caloraview-Desktop-${version}-win-${arch}-Setup.${ext}",
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "pkg": {
+      "artifactName": "Caloraview-Desktop-${version}-mac-${arch}-Installer.${ext}",
+      "installLocation": "/Applications",
+      "allowAnywhere": false,
+      "allowCurrentUserHome": false,
+      "allowRootDirectory": true
+    }
   },
   "license": "MIT",
   "repository": {

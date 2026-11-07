@@ -38,7 +38,7 @@ The installed `ffmpeg-static` package supports both Intel (`x64`) and Apple Sili
 
 (`arm64`), but downloads one executable for the installation platform/architecture.
 
-Do not reuse a Windows `node_modules` directory or assume a disk image contains a
+Do not reuse a Windows `node_modules` directory or assume an installer contains a
 
 universal FFmpeg binary. Build and verify each architecture separately. The Windows
 

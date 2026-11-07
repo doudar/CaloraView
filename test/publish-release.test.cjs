@@ -8,8 +8,8 @@ const source = fs.readFileSync(path.join(__dirname, '../scripts/publish-release.
 const sha = 'a'.repeat(40);
 function run(options = {}) {
   const calls = [];
-  const files = ['Caloraview-Desktop-0.1.1-win-x64.exe', 'Caloraview-Desktop-0.1.1-mac-arm64.dmg'];
-  const fakeFs = { readdirSync: () => options.missing ? files.slice(1) : files, readFileSync: () => Buffer.from('synthetic package'), writeFileSync: (name, value) => calls.push(['checksum', name, value]) };
+  const files = ['Caloraview-Desktop-0.1.1-win-x64-Setup.exe', 'Caloraview-Desktop-0.1.1-mac-arm64-Installer.pkg'];
+  const fakeFs = { readdirSync: () => options.files || (options.missing ? files.slice(1) : files), readFileSync: () => Buffer.from('synthetic package'), writeFileSync: (name, value) => calls.push(['checksum', name, value]) };
   const child = {
     spawnSync: () => ({status: options.tag ? 0 : 1, stdout: options.tag || ''}),
     execFileSync: (_command, args) => {
@@ -56,6 +56,17 @@ test('missing packages, conflicting tags and drafts abort before mutation', () =
   for (const options of [{missing:true}, {tag:'b'.repeat(40)}, {release:{tag_name:'v0.1.1', draft:true, target_commitish:'b'.repeat(40)}}]) {
     const result = run(options);
     assert.ok(result.error);
+    assert.equal(result.mutations.length, 0);
+  }
+});
+
+test('release refuses older portable EXE and DMG assets', () => {
+  for (const files of [
+    ['Caloraview-Desktop-0.1.1-win-x64.exe', 'Caloraview-Desktop-0.1.1-mac-arm64-Installer.pkg'],
+    ['Caloraview-Desktop-0.1.1-win-x64-Setup.exe', 'Caloraview-Desktop-0.1.1-mac-arm64.dmg']
+  ]) {
+    const result = run({files});
+    assert.match(result.error.message, /Missing or unexpected release assets/);
     assert.equal(result.mutations.length, 0);
   }
 });

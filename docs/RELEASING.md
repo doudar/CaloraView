@@ -6,8 +6,9 @@ Every push to `main` runs `.github/workflows/release.yml`. Pull requests run `.g
 
 1. Fetch all tags and choose one patch above the highest stable `vMAJOR.MINOR.PATCH` tag or `package.json` baseline, whichever is greater. With baseline `0.1.0` and no tags, the first release is `v0.1.1`.
 2. Set that version in each build's temporary `package.json` and lockfile. No version-bump commit is pushed, so no release loop is created.
-3. Install with `npm ci`, audit repository contents, run unit tests, and build the Windows x64 portable EXE and macOS ARM64 DMG on their native runners.
-4. Only after both builds succeed, create a draft release/tag at the triggering commit, upload both packages and `SHA256SUMS.txt`, and publish it.
+3. Install with `npm ci`, audit repository contents, run unit tests, and build the Windows x64 NSIS setup installer and macOS ARM64 PKG installer on their native runners.
+4. Install both packages on disposable CI runners and verify their installed application contents. Windows also checks shortcuts, Installed apps registration, and uninstallation.
+5. Only after both builds and installation checks succeed, create a draft release/tag at the triggering commit, upload both installers and `SHA256SUMS.txt`, and publish it.
 
 Only the publish job has `contents: write`. No personal access token is needed. Build jobs have read-only permissions. The workflow publishes directly because pushes made with `GITHUB_TOKEN` do not start another tag workflow ([GitHub token behavior](https://docs.github.com/en/actions/concepts/security/github_token)).
 
@@ -21,4 +22,4 @@ Use **Actions → Release → Run workflow**, selecting `main`, to retry the cur
 
 `package.json` is a baseline rather than the latest published release number. To advance the major/minor series, update it and the root lockfile version together; the next release increments that baseline's patch. Packaged app versions and filenames always use the selected release version.
 
-Windows filenames end in `win-x64.exe`; macOS filenames end in `mac-arm64.dmg`. Intel Macs can be built locally using matching x64 Node.js and dependencies, but are not in the release matrix. Camera factory download and shutter controls still require Windows; see [macOS status](MACOS.md).
+Windows filenames end in `win-x64-Setup.exe`; macOS filenames end in `mac-arm64-Installer.pkg`. The Windows wizard supports selecting the install directory, creates shortcuts, registers an uninstaller, and retains user data on uninstall. The macOS package installs to `/Applications`. The release asset allowlist rejects the earlier portable EXE and DMG filenames. Intel Macs can be built locally using matching x64 Node.js and dependencies, but are not in the release matrix. Camera factory download and shutter controls still require Windows; see [macOS status](MACOS.md).

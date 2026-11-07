@@ -42,12 +42,24 @@ jobs:
       - name: Build distributable
         shell: bash
         run: ${{ matrix.command }}
+      - name: Verify Windows install and uninstall
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/verify-windows-installer.ps1
+      - name: Verify macOS package installation
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          installers=(dist/*-Installer.pkg)
+          test "${#installers[@]}" -eq 1
+          sudo installer -allowUntrusted -pkg "${installers[0]}" -target /
+          node scripts/verify-package.cjs '/Applications/Caloraview Desktop.app/Contents/Resources/app.asar'
       - uses: actions/upload-artifact@v7
         with:
           name: desktop-${{ matrix.platform }}
           path: |
-            dist/*.exe
-            dist/*.dmg
+            dist/*-Setup.exe
+            dist/*-Installer.pkg
           if-no-files-found: error
           retention-days: 14
           compression-level: 0

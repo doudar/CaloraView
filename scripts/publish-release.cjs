@@ -11,7 +11,7 @@ const tag = 'v' + version;
 const sha = process.env.GITHUB_SHA;
 if (!/^[a-f0-9]{40}$/.test(sha || '')) throw new Error('Missing release commit SHA');
 const gh = args => execFileSync('gh', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'] }).trim();
-const names = [`Caloraview-Desktop-${version}-win-x64.exe`, `Caloraview-Desktop-${version}-mac-arm64.dmg`];
+const names = [`Caloraview-Desktop-${version}-win-x64-Setup.exe`, `Caloraview-Desktop-${version}-mac-arm64-Installer.pkg`];
 const folder = 'release-assets';
 const files = fs.readdirSync(folder).sort();
 if (files.join('\n') !== [...names].sort().join('\n')) throw new Error('Missing or unexpected release assets: ' + files.join(', '));

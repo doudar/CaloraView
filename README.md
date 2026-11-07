@@ -10,6 +10,15 @@ A desktop app for the **AccuMEMS SK02** USB thermal camera: live thermal images,
 
 ![Caloraview showing a live thermal image, temperature markers, detector signals, and capture controls](docs/images/caloraview-screenshot.png)
 
+## Install
+
+Download the installer for your platform from [Releases](https://github.com/doudar/CaloraView/releases):
+
+- **Windows x64:** run the `-win-x64-Setup.exe` setup wizard. It installs the app, creates desktop and Start menu shortcuts, and adds an entry to Windows Installed apps for removal. Preferences and cached calibration are retained when uninstalling.
+- **macOS Apple Silicon:** open the `-mac-arm64-Installer.pkg` package and follow Installer to install Caloraview Desktop in Applications.
+
+Installers are currently unsigned; macOS packages are not notarized.
+
 ## Features
 
 - Reads and caches the connected camera's factory calibration on Windows, then captures an internal shutter reference automatically.
@@ -40,8 +49,8 @@ Connect the SK02, choose it in the device list, and connect. Initialization load
 ```sh
 npm run check:repo
 npm test
-npm run dist:win   # Windows x64 portable executable; build on Windows
-npm run dist:mac   # macOS disk image; build on the target Mac
+npm run dist:win   # Windows x64 setup installer; build on Windows
+npm run dist:mac   # macOS PKG installer; build on the target Mac
 ```
 
 Builds go to ignored `dist/`. Unit tests are hardware-free. UI/hardware smoke scripts under `scripts/` can operate the camera; inspect them before running. Release packages are currently unsigned.
