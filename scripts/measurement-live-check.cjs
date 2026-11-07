@@ -1,0 +1,42 @@
+const { _electron:electron }=require('playwright');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+(async()=>{
+ const output=path.resolve('test-output/measurement-parameters');fs.mkdirSync(output,{recursive:true});
+ const desktop=await electron.launch({...process.env.CALORAVIEW_TEST_PACKAGED?{executablePath:path.resolve('dist/win-unpacked/Caloraview Desktop.exe'),args:[]}:{args:[path.resolve('.')]},env:{...process.env,CALORAVIEW_OUTPUT:output}});
+ try{
+  const page=await desktop.firstWindow();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.waitForFunction(()=>window.caloraview && document.querySelector('#device-select option')?.value);
+  await page.waitForTimeout(500);
+  const invoke=(name,payload)=>page.evaluate(async({name,payload})=>window.caloraview.invoke(name,payload),{name,payload});
+  let state=await invoke('state');const initial=state.measurementEnvironment;
+  const unitResult=await invoke('settings',{temperatureUnit:'F'});assert.equal(unitResult.ok,true,JSON.stringify(unitResult));
+  assert.deepEqual((await invoke('state')).measurementEnvironment,initial);
+  assert.equal((await invoke('settings',{measurementEnvironment:{...initial,emissivity:0}})).ok,false);
+  assert.deepEqual((await invoke('state')).measurementEnvironment,initial);
+  const environment={...initial,emissivity:.91,distanceMeters:.9144,emissivityPreset:'custom'};
+  assert.equal((await invoke('settings',{measurementEnvironment:environment})).ok,true);
+  const devices=await invoke('devices');const device=devices.devices.find(d=>/vid_38be&pid_0184/i.test(d.id));assert.ok(device);
+  assert.equal((await invoke('connect',{device:device.id})).ok,true);
+  await page.waitForFunction(()=>/^-?\d/.test(document.querySelector('#temp-center').textContent),null,{timeout:30000});
+  await invoke('settings',{resolution:'enhanced',rotation:90});
+  await page.waitForFunction(()=>document.querySelector('#resolution-select')?.dataset.method?.includes('realesrgan'),null,{timeout:60000}).catch(()=>{});
+  const changed={...environment,emissivity:.93,emissivityPreset:'paint'};
+  assert.equal((await invoke('settings',{measurementEnvironment:changed})).ok,true);
+  const changedSnapshot=await invoke('snapshot');assert.equal(changedSnapshot.ok,true);
+  const changedMeasurement=JSON.parse(fs.readFileSync(path.join(changedSnapshot.folder,'measurement.json'),'utf8'));
+  assert.equal(changedMeasurement.environment.emissivity,.93);
+  if(changedMeasurement.temperatures)assert.equal(changedMeasurement.factoryCalibration.environment.emissivity,.93);
+  assert.equal((await invoke('settings',{measurementEnvironment:environment})).ok,true);
+  const log=await invoke('logStart');assert.equal(log.ok,true);
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(log.folder,'session.json'),'utf8')).configuredEnvironment,environment);
+  assert.equal((await invoke('settings',{measurementEnvironment:{...environment,emissivity:.95}})).ok,false);
+  await page.waitForTimeout(3000);await invoke('logStop');
+  const snapshot=await invoke('snapshot');state=await invoke('state');
+  assert.equal(snapshot.ok,true);assert.equal(errors.length,0);
+  const measurement=JSON.parse(fs.readFileSync(path.join(snapshot.folder,'measurement.json'),'utf8'));
+  assert.equal(measurement.environment.emissivity,.91);assert.equal(measurement.environment.distanceMeters,.9144);
+  await page.screenshot({path:path.join(output,'desktop.png')});
+  const report={snapshot:snapshot.folder,log:log.folder,state,measurement,errors};fs.writeFileSync(path.join(output,'latest.json'),JSON.stringify(report,null,2));
+  console.log(JSON.stringify({snapshot:snapshot.folder,log:log.folder,temperatures:measurement.temperatures,environment:measurement.environment,errors}));
+ }finally{await desktop.close();}
+})().catch(e=>{console.error(e);process.exitCode=1});

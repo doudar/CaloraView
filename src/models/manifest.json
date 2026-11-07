@@ -1,0 +1,19 @@
+{
+  "schema": "caloraview-super-resolution-v1",
+  "models": [
+    {
+      "file": "real-general-dn50-gray2x.onnx",
+      "model": "Real-ESRGAN compact",
+      "method": "realesrgan-x4v3-display",
+      "sha256": "bf3996b14f47230136af979c2d52b9839650953e578c0ec13244c94508eaf528",
+      "bytes": 4869062
+    },
+    {
+      "file": "fsrcnn-x2.onnx",
+      "model": "FSRCNN",
+      "method": "fsrcnn-x2-display",
+      "sha256": "44e310f901749cdea77f343953df5342f281fec982723fabed089a9de335a493",
+      "bytes": 35704
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'">
+  <title>Caloraview • Thermal workspace</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand"><img class="brand-icon" src="assets/icon.png" alt="" width="46" height="46"><div><h1>Caloraview<span>DESKTOP</span></h1><p>Thermal capture workspace</p></div></div>
+    <div class="header-right"><span class="model-tag">AccuMEMS SK02</span><span id="connection-pill" class="connection-pill"><i></i><span>Disconnected</span></span></div>
+  </header>
+
+  <main>
+    <section class="source-bar" aria-label="Camera connection">
+      <div class="source-field"><label for="device-select">CAMERA SOURCE</label><select id="device-select"><option value="">Scanning cameras…</option></select></div>
+      <button id="refresh-btn" class="icon-button" title="Refresh cameras" aria-label="Refresh cameras">↻</button>
+      <button id="connect-btn" class="primary" disabled>Connect camera</button>
+      <span class="source-divider"></span>
+      <button id="replay-btn" class="text-button"><span aria-hidden="true">▷</span> Open raw capture</button>
+      <button id="output-btn" class="text-button output-button"><span aria-hidden="true">▱</span> Capture folder</button>
+    </section>
+
+    <div class="workspace">
+      <section class="viewer-panel panel" aria-label="Thermal preview">
+        <div class="panel-heading"><div class="section-name"><span class="tiny-square"></span><h2>Live view</h2><span id="view-mode" class="small-tag">RAW PREVIEW</span></div><span id="frame-rate" class="technical">— fps</span></div>
+        <div id="viewport" class="viewport">
+          <div id="empty-state" class="empty-state"><div class="viewfinder-icon" aria-hidden="true"><span>+</span></div><h3>Your thermal workspace, ready.</h3><p>Connect the SK02 to start a live detector preview,<br>or open a saved raw capture.</p><span class="empty-detail">USB · 256 × 192 preview · 25 Hz nominal</span></div>
+          <div id="image-stage" class="image-stage" hidden><canvas id="thermal-canvas" width="256" height="192" aria-label="Live raw thermal detector image"></canvas><canvas id="overlay-canvas" width="768" height="576" aria-hidden="true"></canvas></div>
+          <div id="initialization-overlay" class="initialization-overlay" role="status" aria-live="polite" hidden><div class="initialization-card"><span class="initialization-eyebrow">CAMERA SETUP</span><h3>Preparing your camera</h3><p id="initialization-message">Checking saved factory files…</p><div class="initialization-progress-row"><progress id="initialization-progress" max="100" aria-label="Camera initialization progress"></progress><span id="initialization-percent">Working…</span></div><span class="initialization-note">Keep the camera connected. Setup runs automatically.</span></div></div><div class="viewport-top"><span id="stream-badge" class="stream-badge" hidden><i></i> LIVE</span><span id="enhancement-status" class="enhancement-status" role="status" hidden></span><span id="record-badge" class="record-badge" hidden><i></i><span id="record-time">00:00</span></span></div>
+          <div id="viewport-bottom" class="viewport-bottom" hidden><span id="frame-info">FRAME 000001</span><span id="correction-info">UNCORRECTED DETECTOR</span></div>
+        </div>
+        <div class="view-controls">
+          <div class="palette-control"><label for="palette-select">Palette</label><select id="palette-select"><option value="iron">Iron</option><option value="inferno">Inferno</option><option value="gray">White hot</option><option value="rainbow">Rainbow</option></select><span id="palette-ramp" class="palette-ramp"></span></div>
+          <div class="display-controls"><select id="resolution-select" aria-label="Preview resolution" title="Native shows crisp detector pixels. HD enhances the display at 2× resolution. The image badge identifies AI or interpolation; temperature measurements remain native."><option value="native">Native 256×192</option><option value="enhanced">HD 512×384</option></select><button id="rotate-left-btn" class="rotate-button" title="Rotate preview left" aria-label="Rotate preview left">↶</button><button id="rotate-right-btn" class="rotate-button" title="Rotate preview right" aria-label="Rotate preview right">↷</button></div><label class="checkbox-label"><input id="markers-toggle" type="checkbox" checked> Markers</label>
+        </div>
+        <div class="capture-controls"><button id="snapshot-btn" disabled><span aria-hidden="true">▣</span> Save image<span class="key-hint">S</span></button><button id="record-btn" class="record-button" disabled><span class="record-dot"></span><span id="record-label">Record video</span><span class="key-hint">R</span></button><button id="log-btn" disabled><span aria-hidden="true">≡</span><span id="log-label">Log CSV</span></button></div>
+      </section>
+
+      <aside class="analysis-column" aria-label="Measurement and processing">
+        <section class="measurements panel"><div class="panel-heading"><h2>Temperature</h2><div class="measurement-actions"><button id="measurement-parameters-btn" type="button" aria-haspopup="dialog">Parameters</button><select id="temperature-unit-select" aria-label="Temperature display unit"><option value="C">°C</option><option value="F">°F</option></select></div></div><div class="temperature-grid"><article class="temperature-card center-card"><div class="measurement-label"><span class="point-icon center-point">+</span>CENTER</div><div id="temp-center" class="temperature-value">—<small>°C</small></div></article><article class="temperature-card"><div class="measurement-label"><span class="point-icon high-point">+</span>HIGH</div><div id="temp-high" class="temperature-value">—<small>°C</small></div></article><article class="temperature-card"><div class="measurement-label"><span class="point-icon low-point">+</span>LOW</div><div id="temp-low" class="temperature-value">—<small>°C</small></div></article></div><div id="calibration-notice" class="notice" tabindex="0"><span class="notice-icon" aria-hidden="true">i</span><p><strong id="calibration-notice-title">Waiting for camera</strong><span id="calibration-notice-detail">Factory files and shutter reference prepare automatically.</span></p></div></section>
+
+        <section class="detector-panel panel"><div class="panel-heading"><h2>Detector signal</h2><span class="small-tag neutral-tag">COUNTS</span></div><div class="signal-summary"><div><span><i class="legend-dot center-dot"></i>Center</span><strong id="raw-center">—</strong></div><div><span><i class="legend-dot high-dot"></i>Highest</span><strong id="raw-high">—</strong></div><div><span><i class="legend-dot low-dot"></i>Lowest</span><strong id="raw-low">—</strong></div></div><div class="chart-wrap"><canvas id="trace-canvas" aria-label="Recent center, highest and lowest raw detector counts"></canvas><span id="chart-empty">Signal history appears here</span></div><div class="chart-footer"><span>RECENT SIGNAL</span><span>Raw counts ≠ temperature</span></div></section>
+
+
+        <section class="log-capture-panel panel" aria-label="Log capture settings"><div class="panel-heading"><div class="log-heading-label"><h2>Log capture</h2><span id="logging-indicator" hidden>● Active</span></div><select id="log-frequency-select" aria-label="Log capture frequency" title="CSV measurement frequency. Image and video frame rate are unchanged."><option value="0.2">0.2 Hz · 5 s</option><option value="0.5">0.5 Hz · 2 s</option><option value="1">1 Hz · 1 s</option><option value="2" selected>2 Hz · 0.5 s</option></select></div><p id="log-capture-description">CSV includes room temperature and RH from configured environment values.</p></section>
+      </aside>
+      <section class="correction-bar panel" aria-label="Factory calibration"><div class="correction-copy"><h2>Factory calibration <span id="flat-field-state" class="technical">Awaiting reference</span></h2><p id="correction-description">Factory files and shutter reference prepare automatically</p></div><div class="correction-actions"><button id="shutter-btn" disabled>Auto calibrate</button></div></section>
+    </div>
+
+
+  </main>
+
+  <footer><span id="status-message" role="status">Ready</span><span id="footer-format">SK02 · 264 × 222 USB transport · 16-bit detector data</span></footer>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="measurement-parameters-dialog" aria-labelledby="measurement-parameters-title">
+    <form id="measurement-parameters-form">
+      <h2 id="measurement-parameters-title">Measurement parameters</h2>
+      <p class="parameters-description">Used for temperature calculations and recorded with measurements.</p>
+      <div class="parameters-grid">
+        <label class="material-field">Material<select id="env-material"><option value="custom">Custom</option><option value="ice-water">Ice–water mix · 0.95</option><option value="pcb">PCB · 0.91</option><option value="concrete">Cement / concrete · 0.95</option><option value="ceramics">Ceramics · 0.92</option><option value="paint">Paint · 0.93</option><option value="wood">Wood · 0.85</option><option value="asphalt">Asphalt · 0.96</option><option value="brick">Brick · 0.95</option><option value="sand">Sand · 0.90</option><option value="soil">Soil · 0.92</option><option value="cotton">Cotton · 0.98</option><option value="cardboard">Cardboard · 0.90</option><option value="white-paper">White paper · 0.90</option><option value="water">Water · 0.96</option></select><small>Approximate presets; surface finish affects emissivity.</small></label><label>Emissivity<input id="env-emissivity" type="number" min="0.01" max="1" step="any" required></label>
+        <label>Camera-to-target distance<div class="distance-input"><input id="env-distance" type="number" min="0.1" max="100" step="any" required><select id="env-distance-unit" aria-label="Distance unit"><option value="m">m</option><option value="ft">ft</option></select></div><small>Atmospheric compensation; this does not adjust focus.</small></label>
+        <label>Air temperature <span class="environment-temperature-unit">(°C)</span><input id="env-ambient" type="number" step="any" required></label>
+        <label>Relative humidity (%)<input id="env-humidity" type="number" min="0" max="100" step="any" required></label>
+        <div class="reflected-field"><label for="env-reflected">Reflected temperature <span class="environment-temperature-unit">(°C)</span></label><label class="reflection-override"><input id="env-reflected-manual" type="checkbox">Manual override</label><input id="env-reflected" type="number" step="any" aria-describedby="env-reflected-help" disabled><small id="env-reflected-help">Estimated automatically when the camera connects.</small></div>
+      </div>
+      <p id="measurement-parameters-error" role="alert" hidden></p>
+      <div class="parameters-actions"><button id="measurement-parameters-cancel" type="button">Cancel</button><button id="measurement-parameters-apply" class="primary" type="submit">Apply</button></div>
+    </form>
+  </dialog>
+  <script src="renderer.js"></script>
+</body>
+</html>

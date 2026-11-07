@@ -1,0 +1,180 @@
+[
+  {
+    "environment": {
+      "ambientC": -10,
+      "humidityPercent": 0,
+      "distanceMeters": 0.05,
+      "range": 0,
+      "emissivity": 0.1,
+      "reflectedC": -10
+    },
+    "blackbodyC": -40,
+    "transmissionStatus": 0,
+    "tau": 0.9962711334228516,
+    "status": -19,
+    "celsius": null
+  },
+  {
+    "environment": {
+      "ambientC": -10,
+      "humidityPercent": 0,
+      "distanceMeters": 1,
+      "range": 0,
+      "emissivity": 0.1,
+      "reflectedC": -10
+    },
+    "blackbodyC": 53.37890625,
+    "transmissionStatus": 0,
+    "tau": 0.9412690997123718,
+    "status": 0,
+    "celsius": 245.80361938476562
+  },
+  {
+    "environment": {
+      "ambientC": 20,
+      "humidityPercent": 0,
+      "distanceMeters": 10,
+      "range": 0,
+      "emissivity": 0.1,
+      "reflectedC": 20
+    },
+    "blackbodyC": -40,
+    "transmissionStatus": 0,
+    "tau": 0.7865711450576782,
+    "status": -19,
+    "celsius": null
+  },
+  {
+    "environment": {
+      "ambientC": 45,
+      "humidityPercent": 0,
+      "distanceMeters": 10,
+      "range": 0,
+      "emissivity": 1,
+      "reflectedC": 20
+    },
+    "blackbodyC": 53.37890625,
+    "transmissionStatus": 0,
+    "tau": 0.7865711450576782,
+    "status": 0,
+    "celsius": 55.242919921875
+  },
+  {
+    "environment": {
+      "ambientC": -10,
+      "humidityPercent": 0,
+      "distanceMeters": 0.05,
+      "range": 1,
+      "emissivity": 0.1,
+      "reflectedC": -10
+    },
+    "blackbodyC": -40,
+    "transmissionStatus": 0,
+    "tau": 0.9431818127632141,
+    "status": -19,
+    "celsius": null
+  },
+  {
+    "environment": {
+      "ambientC": -10,
+      "humidityPercent": 60,
+      "distanceMeters": 0.05,
+      "range": 1,
+      "emissivity": 0.97,
+      "reflectedC": 40
+    },
+    "blackbodyC": 53.37890625,
+    "transmissionStatus": 0,
+    "tau": 0.9427114129066467,
+    "status": 0,
+    "celsius": 55.161773681640625
+  },
+  {
+    "environment": {
+      "ambientC": 45,
+      "humidityPercent": 0,
+      "distanceMeters": 10,
+      "range": 1,
+      "emissivity": 0.1,
+      "reflectedC": 40
+    },
+    "blackbodyC": 53.37890625,
+    "transmissionStatus": 0,
+    "tau": 0.4778493642807007,
+    "status": 0,
+    "celsius": 170.37496948242188
+  },
+  {
+    "environment": {
+      "ambientC": -10,
+      "humidityPercent": 0,
+      "distanceMeters": 0.05,
+      "range": 2,
+      "emissivity": 0.1,
+      "reflectedC": -10
+    },
+    "blackbodyC": 53.37890625,
+    "transmissionStatus": 0,
+    "tau": 0.8361389636993408,
+    "status": 0,
+    "celsius": 260.4092712402344
+  },
+  {
+    "environment": {
+      "ambientC": -10,
+      "humidityPercent": 100,
+      "distanceMeters": 1,
+      "range": 2,
+      "emissivity": 0.1,
+      "reflectedC": 20
+    },
+    "blackbodyC": 53.37890625,
+    "transmissionStatus": 0,
+    "tau": 0.5132556557655334,
+    "status": 0,
+    "celsius": 297.0459899902344
+  },
+  {
+    "environment": {
+      "ambientC": 20,
+      "humidityPercent": 100,
+      "distanceMeters": 0.05,
+      "range": 2,
+      "emissivity": 0.97,
+      "reflectedC": 20
+    },
+    "blackbodyC": -40,
+    "transmissionStatus": 0,
+    "tau": 0.8123689889907837,
+    "status": 0,
+    "celsius": -63.50630187988281
+  },
+  {
+    "environment": {
+      "ambientC": 45,
+      "humidityPercent": 60,
+      "distanceMeters": 10,
+      "range": 2,
+      "emissivity": 1,
+      "reflectedC": 20
+    },
+    "blackbodyC": 53.37890625,
+    "transmissionStatus": 0,
+    "tau": 0.0000021440578166220803,
+    "status": 0,
+    "celsius": 4474.2001953125
+  },
+  {
+    "environment": {
+      "ambientC": 45,
+      "humidityPercent": 100,
+      "distanceMeters": 10,
+      "range": 2,
+      "emissivity": 1,
+      "reflectedC": 40
+    },
+    "blackbodyC": 150,
+    "transmissionStatus": -305,
+    "tau": null
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "case": 0,
+    "pixels": 49152,
+    "sha256": "a5362c079edf9b9ab06893de4556fc20273b65f5555e213537f31626d70cbf1e"
+  },
+  {
+    "case": 1,
+    "pixels": 49152,
+    "sha256": "910257baa08dc53077f43d238fcc13fc40d8e01bd32f03aed32bd79fc1d3a54f"
+  },
+  {
+    "case": 2,
+    "pixels": 49152,
+    "sha256": "7b1f34f523fc4be220ce949ee7bde66029d071fe42deeb496f637d40e9635647"
+  },
+  {
+    "case": 3,
+    "pixels": 49152,
+    "sha256": "af6519775f5b2c29cd7702d10ab76b3409396e9b578e07ed4c0c80e5f39cc2ed"
+  },
+  {
+    "case": 4,
+    "pixels": 49152,
+    "sha256": "73055374f40ef6277c6ba066a8b9949d65718a84acbaf3ffb643525330f53ccb"
+  },
+  {
+    "case": 5,
+    "pixels": 49152,
+    "sha256": "39aeedcf4ea6271ec12ebe4cb22daf506334ff362236e73c28d9fcad784bbaf4"
+  },
+  {
+    "case": 6,
+    "pixels": 49152,
+    "sha256": "1c29ace69c407f334a27705b8003795388f94817f169046e600992caeedfe393"
+  },
+  {
+    "case": 7,
+    "pixels": 49152,
+    "sha256": "1389d4579ab3eb7aad156425d7527a7b9d0e32c43f65a1a932e289831ffb5a9b"
+  }
+]

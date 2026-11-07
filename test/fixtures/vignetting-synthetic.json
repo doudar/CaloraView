@@ -1,0 +1,158 @@
+[
+  {
+    "map": 0,
+    "templateExact": true,
+    "frames": [
+      {
+        "alpha": 0,
+        "sha256": "381e8bafe1a848b73c8909dc4641ce9741cf3389a2068e9dc0f3fcd857eff869"
+      },
+      {
+        "alpha": 0,
+        "sha256": "a86dcdeb84469f7fbd9837947707c030aa756cfb6e5a82d2c812caa56d5f236a"
+      },
+      {
+        "alpha": 0,
+        "sha256": "3208a9435b83cf6ed2806c4ca5fe34536f801a5b38f09db0736cbe81341030da"
+      },
+      {
+        "alpha": 0,
+        "sha256": "1c29ace69c407f334a27705b8003795388f94817f169046e600992caeedfe393"
+      },
+      {
+        "alpha": 0,
+        "sha256": "1389d4579ab3eb7aad156425d7527a7b9d0e32c43f65a1a932e289831ffb5a9b"
+      }
+    ]
+  },
+  {
+    "map": 1,
+    "templateExact": true,
+    "frames": [
+      {
+        "alpha": 130277,
+        "sha256": "1a16606eb6a8055cc60dedf872894965eff851e5fe9c15c040e5065f87314e64"
+      },
+      {
+        "alpha": 118013,
+        "sha256": "cb18e89eb689d2d6a980793820da2b629cd8aa2f4da0bbfe35426abef1b4e66b"
+      },
+      {
+        "alpha": 114325,
+        "sha256": "ff78d1c9b330ba22903b99b99d2195ecba4e1b278c778af2e6ba70a4b1b62d24"
+      },
+      {
+        "alpha": 110735,
+        "sha256": "3bf0d3d31ee1b8099b4592b4a447f88fe1cd4afd22c275eb685ba21d51cd0406"
+      },
+      {
+        "alpha": 107258,
+        "sha256": "956b898a7a9323b4fe2c8eb0cb968b1b0dac1860f621ada332c66a0fff9204d7"
+      }
+    ]
+  },
+  {
+    "map": 2,
+    "templateExact": true,
+    "frames": [
+      {
+        "alpha": 131525,
+        "sha256": "4cb37639f46e14dd1271ac6c5b62bbd56f9dee6e749546c5e7721ae3cde2fcae"
+      },
+      {
+        "alpha": 119220,
+        "sha256": "6ebf5f365d5141f146835c978f0b83f4fb4b66c6144aa09e2f9e3aa1c35c919d"
+      },
+      {
+        "alpha": 115494,
+        "sha256": "c063d44309866bc3b7bdf3cddbadf8839a1ebb565c4157f263b19b8ea15e942e"
+      },
+      {
+        "alpha": 111885,
+        "sha256": "58b95f3eb31a9cd6be1af9838ae16ca5e76b1e0b1a6ec4391681799ba5a4ac63"
+      },
+      {
+        "alpha": 108389,
+        "sha256": "1abef65951c400dfc8a010a3721344d1a482d7e481e3cade771300f12f102aab"
+      }
+    ]
+  },
+  {
+    "map": 3,
+    "templateExact": true,
+    "frames": [
+      {
+        "alpha": 0,
+        "sha256": "c520a7722de3c706c0471caf2732a88f246329192f982b2e7f6765864b1dd111"
+      },
+      {
+        "alpha": 0,
+        "sha256": "04a13f22d892cbf71497d43b26f712f581ed4c42c4316f14b34fbd5c04f214aa"
+      },
+      {
+        "alpha": 0,
+        "sha256": "3208a9435b83cf6ed2806c4ca5fe34536f801a5b38f09db0736cbe81341030da"
+      },
+      {
+        "alpha": 0,
+        "sha256": "1c29ace69c407f334a27705b8003795388f94817f169046e600992caeedfe393"
+      },
+      {
+        "alpha": 0,
+        "sha256": "1389d4579ab3eb7aad156425d7527a7b9d0e32c43f65a1a932e289831ffb5a9b"
+      }
+    ]
+  },
+  {
+    "map": 4,
+    "templateExact": true,
+    "frames": [
+      {
+        "alpha": 130924,
+        "sha256": "540efa7da4b7d9aa7fa22ad3faa7aeaa7a4efb47b2c6622c2a4e6b285fe3c3db"
+      },
+      {
+        "alpha": 118636,
+        "sha256": "4142c8f31ed734163b99296bbfdc760109fba369773962f06ea078dfd85768dd"
+      },
+      {
+        "alpha": 114431,
+        "sha256": "7e8313401eff9ca5fd4384970421d6dc1b6ee7493d8501d67f39d67a44d742e6"
+      },
+      {
+        "alpha": 110854,
+        "sha256": "f8a85962901af19c7492c2ff6dba65d1bebefc035041e91f27ce08b5b8a00c9b"
+      },
+      {
+        "alpha": 107389,
+        "sha256": "9b8065f1571cce386a14c5709776c22979765e80582f3a4b5f15212d0add506f"
+      }
+    ]
+  },
+  {
+    "map": 5,
+    "templateExact": true,
+    "frames": [
+      {
+        "alpha": 0,
+        "sha256": "08cff5eccc573e923e661e026b2d08bfd16732c9866f3b880951f276c48ffebe"
+      },
+      {
+        "alpha": 0,
+        "sha256": "2a97e77e83fd9418b9db9336013a36215cb47fd24096f2edd0b3c5b55998bed6"
+      },
+      {
+        "alpha": 0,
+        "sha256": "3208a9435b83cf6ed2806c4ca5fe34536f801a5b38f09db0736cbe81341030da"
+      },
+      {
+        "alpha": 0,
+        "sha256": "1c29ace69c407f334a27705b8003795388f94817f169046e600992caeedfe393"
+      },
+      {
+        "alpha": 0,
+        "sha256": "1389d4579ab3eb7aad156425d7527a7b9d0e32c43f65a1a932e289831ffb5a9b"
+      }
+    ]
+  }
+]

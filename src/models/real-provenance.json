@@ -1,0 +1,55 @@
+{
+  "format": "caloraview-open-sr-model-v1",
+  "name": "Real-ESRGAN general v3 DN50 grayscale2x",
+  "upstream": "https://github.com/xinntao/Real-ESRGAN",
+  "license": "BSD-3-Clause",
+  "copyright": "Copyright (c) 2021, Xintao Wang",
+  "weights": [
+    {
+      "url": "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-general-x4v3.pth",
+      "sha256": "8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292"
+    },
+    {
+      "url": "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-general-wdn-x4v3.pth",
+      "sha256": "1641f8c4464b9f097c9fdda5589273713f67cf59f3d909e0bd688f0cee269dca"
+    }
+  ],
+  "derivation": "Equal0.5 interpolation of strong/weak official weights; repeat scalarinput3channels; officialSRVGG32x64network; averageRGB; clamp0..1; averagepool2x2 to512x384",
+  "model": {
+    "file": "real-general-dn50-gray2x.onnx",
+    "sha256": "bf3996b14f47230136af979c2d52b9839650953e578c0ec13244c94508eaf528",
+    "bytes": 4869062,
+    "input": {
+      "name": "input",
+      "dtype": "float32",
+      "shape": [
+        1,
+        1,
+        192,
+        256
+      ],
+      "range": [
+        0,
+        1
+      ]
+    },
+    "output": {
+      "name": "output",
+      "dtype": "float32",
+      "shape": [
+        1,
+        1,
+        384,
+        512
+      ],
+      "range": [
+        0,
+        1
+      ]
+    }
+  },
+  "purpose": "Display enhancement only; temperatures and savedraw independent",
+  "trainingDomain": "General natural images, not validated as recovering true thermal detail",
+  "exportScript": "scripts/research/benchmark-real-gray.py",
+  "validationNote": "Historical benchmark outputs and camera imagery are not distributed. Original exporter source is retained; it needs separately supplied upstream weights and optional benchmark inputs."
+}

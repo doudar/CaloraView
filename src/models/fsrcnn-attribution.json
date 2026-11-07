@@ -1,0 +1,12 @@
+{
+  "upstream": "https://github.com/Saafke/FSRCNN_Tensorflow",
+  "commit": "6a4812c4ef1c4f5947d79beafa32a05a6eb4a94d",
+  "modelPath": "models/FSRCNN_x2.pb",
+  "license": "Apache-2.0",
+  "licenseFile": "FSRCNN-LICENSE.txt",
+  "sourceModelSha256": "366b33f0084c7b3f2bf6724f0a2c77bca94fcec9d7b6d72389d330073b380d5c",
+  "convertedModelSha256": "44e310f901749cdea77f343953df5342f281fec982723fabed089a9de335a493",
+  "licenseSha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "modifications": "Converted frozen TensorFlow weights/graph to fixed-shape ONNX NCHW; algebraically folded PReLU. No retraining. See benchmark-fsrcnn-convert.py.",
+  "trainingProvenance": "Upstream documents T91 training and General100 finetuning; this is a natural-image model, not a validated thermal measurement model."
+}
