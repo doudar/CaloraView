@@ -6,6 +6,10 @@ A desktop app for the **AccuMEMS SK02** USB thermal camera: live thermal images,
 
 [Download a release](https://github.com/doudar/CaloraView/releases) · [Build status](https://github.com/doudar/CaloraView/actions) · [Report an issue](https://github.com/doudar/CaloraView/issues)
 
+<a href="https://www.buymeacoffee.com/anthonydouv"><img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" alt="Buy me a coffee" height="40"></a>
+
+![Caloraview showing a live thermal image, temperature markers, detector signals, and capture controls](docs/images/caloraview-screenshot.png)
+
 ## Features
 
 - Reads and caches the connected camera's factory calibration on Windows, then captures an internal shutter reference automatically.
@@ -54,6 +58,10 @@ Pull requests run tests and build Windows x64 and macOS ARM64 packages. Every su
 - `assets/brand/`: original application artwork and editable design.
 
 Vendor APKs, decompiled code/libraries, camera dumps, private captures, generated reports, and local signing keys are excluded. Historical investigation notes refer to evidence that is no longer distributed; those files are not build dependencies. The checked-in ONNX models are independently sourced open models, with hashes and licenses under [src/models](src/models/NOTICE.md).
+
+## Support development
+
+If Caloraview is useful to you, [buy me a coffee](https://www.buymeacoffee.com/anthonydouv) to support continued development. Thank you!
 
 ## License
 

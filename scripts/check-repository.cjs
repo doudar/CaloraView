@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const crypto = require('node:crypto');
-const binaries = new Set(['assets/brand/icon.png', 'assets/brand/icon.ico', 'assets/brand/icon.icns', 'assets/brand/skarix-icon.png', 'src/renderer/assets/icon.png', 'src/models/fsrcnn-x2.onnx', 'src/models/real-general-dn50-gray2x.onnx']);
+const binaries = new Set(['assets/brand/icon.png', 'assets/brand/icon.ico', 'assets/brand/icon.icns', 'assets/brand/skarix-icon.png', 'docs/images/caloraview-screenshot.png', 'src/renderer/assets/icon.png', 'src/models/fsrcnn-x2.onnx', 'src/models/real-general-dn50-gray2x.onnx']);
 function validatePath(name) {
   const parts = name.split('/');
   if (parts.some(p => !p || p === '.' || p === '..') || path.isAbsolute(name)) throw new Error('Invalid repository path: ' + name);
